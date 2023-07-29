@@ -17,13 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="container">
-          <div className="flex-col">
-            <div className="">{children}</div>
-          </div>
-        </div>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   )
 }
