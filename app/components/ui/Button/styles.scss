@@ -1,5 +1,12 @@
 .button-wrapper {
   height: 50px;
+
+  button :hover {
+    opacity: 0.5;
+  }
+}
+
+.custom {
   color: white;
   background: rgb(238, 174, 202);
   background: radial-gradient(
@@ -7,4 +14,9 @@
     rgba(238, 174, 202, 1) 0%,
     rgba(148, 187, 233, 1) 100%
   );
+}
+
+.default {
+  color: black;
+  background: white;
 }
