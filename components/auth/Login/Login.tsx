@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import {FormikProvider, useFormik, Field, Form} from 'formik'
+import React from 'react'
+import { FormikProvider, useFormik, Field, Form } from 'formik'
 import Button from '@/ui/Button/Button'
 import Input from '@/ui/Input/Input'
 
@@ -26,13 +26,9 @@ function Login() {
     onSubmit: submitForm,
   })
 
-  useEffect(() => {
-    console.log(form.values)
-  }, [form])
-
   return (
     <FormikProvider value={form}>
-      <Form className="flex flex-col">
+      <Form className="flex flex-col space-y-4">
         <Field component={Input} label="Email" name="email" type="text" />
         <Field
           component={Input}
@@ -41,20 +37,20 @@ function Login() {
           type="password"
           name="password"
         />
-        <Field
-          component={Button}
-          onClick={() => submitForm(form.values)}
+
+        <Button
+          type="submit"
           className="my-2"
           label="Continue with email"
         />
 
-        <div className="container flex text-center content-around">
-          <div className="container border border-slate-400 h-0 mx-2 my-auto" />
+        <div className="container flex items-center">
+          <div className="container border border-slate-400 h-0 mx-2" />
           <span className="text-slate-400">or</span>
-          <div className="container border border-slate-400 h-0 mx-2 my-auto" />
+          <div className="container border border-slate-400 h-0 mx-2" />
         </div>
 
-        <Button className="my-2" icon label="Continue with Google" />
+        <Button className="mt-2" icon label="Continue with Google" />
       </Form>
     </FormikProvider>
   )

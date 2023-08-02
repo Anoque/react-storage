@@ -19,7 +19,7 @@ function Auth({ page }: { page: AuthPageEnum }) {
       {page === LOGIN_FORM && <Login />}
       {page === REGISTER_FORM && <span>Register</span>}
 
-      <Link href={page === LOGIN_FORM ? REGISTER_FORM : LOGIN_FORM}>
+      <Link href={page === LOGIN_FORM ? REGISTER_FORM : LOGIN_FORM} className='mt-4'>
         <span className="text-center mt-4 hover:underline hover:cursor-pointer text-slate-400">
           {linkTitle[page]}
         </span>
