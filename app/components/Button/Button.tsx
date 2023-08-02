@@ -12,7 +12,7 @@ interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 function Button({ label, icon, ...props }: IButton) {
   const buttonClassnames = classnames(
     props.className,
-    'button-wrapper rounded-lg',
+    'button-wrapper rounded-lg hover:opacity-75',
     icon ? 'default border border-slate-300 font-semibold' : 'custom',
   )
   return (

@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react'
 import { FormikProvider, useFormik, Field } from 'formik'
-import Button from '../../ui/Button/Button'
-import Input from '../../ui/Input/Input'
+import Button from '../../Button/Button'
+import Input from '../../Input/Input'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  authActions,
+  selectAuthLoginState,
+} from '@/app/core/redux/auth/auth.slice'
 
 interface IInitialState {
   password: string
@@ -9,6 +14,8 @@ interface IInitialState {
 }
 
 function Form() {
+  /*  const dispatch = useDispatch<AppDispatch>() */
+  /* const authLoginState = useSelector(selectAuthLoginState) */
   const initialState: IInitialState = {
     password: '',
     email: '',
@@ -16,6 +23,7 @@ function Form() {
 
   const submitForm = (values: IInitialState) => {
     console.log(values)
+    /* dispatch(authActions.loginUser(values)) */
   }
 
   const form = useFormik<IInitialState>({
