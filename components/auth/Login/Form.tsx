@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react'
 import { FormikProvider, useFormik, Field } from 'formik'
-import Button from '../../Button/Button'
-import Input from '../../Input/Input'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  authActions,
-  selectAuthLoginState,
-} from '@/app/core/redux/auth/auth.slice'
+import Button from '@/ui/Button/Button'
+import Input from '@/ui/Input/Input'
 
 interface IInitialState {
   password: string
@@ -50,7 +45,7 @@ function Form() {
           />
           <Field
             component={Button}
-            onClick={submitForm(form.values)}
+            onClick={() => submitForm(form.values)}
             className="my-2"
             label="Continue with email"
           />

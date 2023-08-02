@@ -1,3 +1,5 @@
+import Auth from '@/components/auth/Auth'
+
 interface UserProps {
   params: {
     user: string
@@ -5,5 +7,5 @@ interface UserProps {
 }
 
 export default function UserPage({ params: { user } }: UserProps) {
-  return <h1>You are logged as {user}</h1>
+  return <Auth />
 }

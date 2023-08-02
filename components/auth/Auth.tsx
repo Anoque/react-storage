@@ -3,16 +3,16 @@
 import React, { useState } from 'react'
 import Form from './Login/Form'
 import './style.css'
+import { AuthPageEnum } from '@/components/types/auth'
 
-const LOGIN_FORM = 'login'
-const REGISTER_FORM = 'register'
+function Auth({ page }: { page: AuthPageEnum }) {
+  const [activePage, setActivePage] = useState<AuthPageEnum>(page)
 
-function Auth() {
-  const [activePage, setActivePage] = useState<string>(LOGIN_FORM)
   return (
     <main className="container flex flex-row h-full">
-      {activePage === LOGIN_FORM && <Form />}
-      {activePage === REGISTER_FORM && <span>Resiter</span>}
+      {activePage === AuthPageEnum.LOGIN_FORM && <Form />}
+      {activePage === AuthPageEnum.REGISTER_FORM && <span>Register</span>}
+
       <div className="basis-1/2 flex content-center">
         <div className="m-auto height-auto">
           <h5 className="text-9xl text-white underline decoration-pink-500 mb-3">
