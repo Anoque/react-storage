@@ -6,7 +6,7 @@ import { authState } from './auth.types'
 const initialState: authState = {
   login: {
     token: null,
-    loadingStatus: null,
+    status: null,
     error: null,
   },
 }
@@ -15,32 +15,33 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    logout: (state) => {
+    logout: (state: authState) => {
       state.login = {
         token: null,
-        loadingStatus: null,
+        status: null,
         error: null,
       }
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginUser.fulfilled, (state, { payload: data, meta }) => {
+      .addCase(loginUser.fulfilled, (state: authState, { payload: data, meta }) => {
         state.login.token = data
-        state.login.loadingStatus = 'loaded'
+        state.login.status = 'loaded'
+
+        toast.success('Success')
       })
-      .addCase(loginUser.rejected, (state, { payload: data, meta }) => {
+      .addCase(loginUser.rejected, (state: authState, { payload: data, meta }) => {
         state.login.token = null
-        state.login.loadingStatus = 'loaded'
-        toast.error('ERROR')
+        state.login.status = 'loaded'
+
+        toast.error(data || 'Unknown error')
       })
-      .addCase(loginUser.pending, (state) => {
-        state.login.loadingStatus = 'loading'
+      .addCase(loginUser.pending, (state: authState) => {
+        state.login.status = 'loading'
       })
   },
 })
-
-export const authReducer = authSlice.reducer
 
 export const authActions = {
   loginUser,
@@ -48,3 +49,5 @@ export const authActions = {
 }
 
 export const selectAuthLoginState = (state) => state.auth.login
+
+export default authSlice.reducer

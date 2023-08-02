@@ -2,26 +2,24 @@ import React from 'react'
 import { FormikProvider, useFormik, Field, Form } from 'formik'
 import Button from '@/ui/Button/Button'
 import Input from '@/ui/Input/Input'
-
-interface IInitialState {
-  password: string
-  email: string
-}
+import {authActions, selectAuthLoginState} from '@/store/auth/auth.slice'
+import {useAppDispatch, useAppSelector} from '@/store/hooks'
+import {loginRequest} from '@/store/auth/auth.types'
 
 function Login() {
-  /*  const dispatch = useDispatch<AppDispatch>() */
-  /* const authLoginState = useSelector(selectAuthLoginState) */
-  const initialState: IInitialState = {
+  const dispatch = useAppDispatch()
+  const authLoginState = useAppSelector(selectAuthLoginState)
+
+  const initialState: loginRequest = {
     password: '',
     email: '',
   }
 
-  const submitForm = (values: IInitialState) => {
-    console.log(values)
-    /* dispatch(authActions.loginUser(values)) */
+  const submitForm = (values: loginRequest) => {
+    dispatch(authActions.loginUser(values))
   }
 
-  const form = useFormik<IInitialState>({
+  const form = useFormik<loginRequest>({
     initialValues: initialState,
     onSubmit: submitForm,
   })

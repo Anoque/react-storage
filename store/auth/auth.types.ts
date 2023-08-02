@@ -1,6 +1,6 @@
 export interface ILoginState {
   token: string | null
-  loadingStatus: string | null
+  status: string | null
   error: string | object | null
 }
 
