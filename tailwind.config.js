@@ -1,9 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    // './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './ui/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
@@ -23,6 +24,7 @@ module.exports = {
       '2xl': '1536px',
     },
 
+    /*
     spacing: {
       '1': '8px',
       '2': '12px',
@@ -31,6 +33,7 @@ module.exports = {
       '5': '32px',
       '6': '48px',
     }
+    */
   },
   plugins: [],
 }
