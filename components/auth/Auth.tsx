@@ -1,31 +1,30 @@
 'use client'
 
-import React, { useState } from 'react'
-import Form from './Login/Form'
+import React from 'react'
+import Login from './Login/Login'
 import './style.css'
-import { AuthPageEnum } from '@/components/types/auth'
+import {AuthPageEnum} from '@/components/types/auth'
+import Link from 'next/link'
 
 function Auth({ page }: { page: AuthPageEnum }) {
-  const [activePage, setActivePage] = useState<AuthPageEnum>(page)
+  const { LOGIN_FORM, REGISTER_FORM } = AuthPageEnum
+
+  const linkTitle = {
+    [LOGIN_FORM]: "Don't have an account? Create one!",
+    [REGISTER_FORM]: "Sign In",
+  };
 
   return (
-    <main className="container flex flex-row h-full">
-      {activePage === AuthPageEnum.LOGIN_FORM && <Form />}
-      {activePage === AuthPageEnum.REGISTER_FORM && <span>Register</span>}
+    <React.Fragment>
+      {page === LOGIN_FORM && <Login />}
+      {page === REGISTER_FORM && <span>Register</span>}
 
-      <div className="basis-1/2 flex content-center">
-        <div className="m-auto height-auto">
-          <h5 className="text-9xl text-white underline decoration-pink-500 mb-3">
-            React <br /> Storage.
-          </h5>
-          <span className="text-white italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            <br /> sed do eiusmod tempor
-            <br /> incididunt ut labore et dolore magna aliqua.
-          </span>
-        </div>
-      </div>
-    </main>
+      <Link href={page === LOGIN_FORM ? REGISTER_FORM : LOGIN_FORM}>
+        <span className="text-center mt-4 hover:underline hover:cursor-pointer text-slate-400">
+          {linkTitle[page]}
+        </span>
+      </Link>
+    </React.Fragment>
   )
 }
 

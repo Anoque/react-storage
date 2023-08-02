@@ -6,7 +6,7 @@ import googlelogo from '../../../images/google-logo.png'
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string
   icon?: string
-  props: string[]
+  // props: string[]
 }
 
 function Button({ label, icon, ...props }: IButton) {
