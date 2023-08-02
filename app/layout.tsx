@@ -6,6 +6,8 @@ import { Providers } from '@/store/providers'
 
 import 'react-toastify/dist/ReactToastify.css'
 import {ToastContainer} from 'react-toastify'
+import {ErrorBoundary} from 'next/dist/client/components/error-boundary'
+import ErrorPage from './error'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,9 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
-          {children}
-        </Providers>
+        <ErrorBoundary errorComponent={ErrorPage}>
+          <Providers>
+            {children}
+          </Providers>
+        </ErrorBoundary>
+
         <ToastContainer />
       </body>
     </html>

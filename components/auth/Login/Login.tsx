@@ -1,33 +1,35 @@
-import React from 'react'
-import { FormikProvider, useFormik, Field, Form } from 'formik'
+'use client'
+
+import React, { useEffect } from 'react'
+import { Field, Form, Formik } from 'formik'
 import Button from '@/ui/Button/Button'
 import Input from '@/ui/Input/Input'
-import {authActions, selectAuthLoginState} from '@/store/auth/auth.slice'
-import {useAppDispatch, useAppSelector} from '@/store/hooks'
-import {loginRequest} from '@/store/auth/auth.types'
+import { authActions, selectAuthLoginState } from '@/store/auth/auth.slice'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { loginRequest } from '@/store/auth/auth.types'
+
+const initialState: loginRequest = {
+  password: '',
+  email: '',
+}
 
 function Login() {
   const dispatch = useAppDispatch()
   const authLoginState = useAppSelector(selectAuthLoginState)
 
-  const initialState: loginRequest = {
-    password: '',
-    email: '',
-  }
-
   const submitForm = (values: loginRequest) => {
     dispatch(authActions.loginUser(values))
   }
 
-  const form = useFormik<loginRequest>({
-    initialValues: initialState,
-    onSubmit: submitForm,
-  })
+  useEffect(() => {
+    console.log('state', authLoginState)
+  }, [authLoginState])
 
   return (
-    <FormikProvider value={form}>
+    <Formik initialValues={initialState} onSubmit={submitForm}>
       <Form className="flex flex-col space-y-4">
         <Field component={Input} label="Email" name="email" type="text" />
+
         <Field
           component={Input}
           className="mb-2"
@@ -50,7 +52,7 @@ function Login() {
 
         <Button className="mt-2" icon label="Continue with Google" />
       </Form>
-    </FormikProvider>
+    </Formik>
   )
 }
 
