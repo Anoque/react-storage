@@ -7,6 +7,11 @@ import Input from '@/ui/Input/Input'
 import { authActions, selectAuthLoginState } from '@/store/auth/auth.slice'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import { loginRequest } from '@/store/auth/auth.types'
+import googleLogo from '@/images/google-icon.svg'
+import { AuthPageEnum } from '@/components/types/auth'
+import { STATUS } from '@/store/types'
+import { redirect } from 'next/navigation'
+import { getUser } from '@/store/utils/localStorage'
 
 const initialState: loginRequest = {
   password: '',
@@ -22,7 +27,15 @@ function Login() {
   }
 
   useEffect(() => {
-    console.log('state', authLoginState)
+    const { user, token } = getUser()
+
+    if (
+      authLoginState.status === STATUS.LOADED &&
+      !authLoginState.error &&
+      token
+    ) {
+      redirect(`/${user}`)
+    }
   }, [authLoginState])
 
   return (
@@ -32,17 +45,12 @@ function Login() {
 
         <Field
           component={Input}
-          className="mb-2"
           label="Password"
           type="password"
           name="password"
         />
 
-        <Button
-          type="submit"
-          className="my-2"
-          label="Continue with email"
-        />
+        <Button type="submit" className="my-2" label="Continue with email" />
 
         <div className="container flex items-center">
           <div className="container border border-slate-400 h-0 mx-2" />
@@ -50,7 +58,11 @@ function Login() {
           <div className="container border border-slate-400 h-0 mx-2" />
         </div>
 
-        <Button className="mt-2" icon label="Continue with Google" />
+        <Button
+          className="mt-2"
+          icon={googleLogo}
+          label="Continue with Google"
+        />
       </Form>
     </Formik>
   )

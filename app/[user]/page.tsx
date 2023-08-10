@@ -1,5 +1,3 @@
-import Auth from '@/components/auth/Auth'
-
 interface UserProps {
   params: {
     user: string
@@ -7,5 +5,5 @@ interface UserProps {
 }
 
 export default function UserPage({ params: { user } }: UserProps) {
-  return <Auth />
+  return <div>Hi,{user}!</div>
 }

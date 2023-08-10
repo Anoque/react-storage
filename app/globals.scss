@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+$base-color: linear-gradient(
+  0deg,
+  rgba(144, 199, 200, 0.6560749299719888) 0%,
+  rgba(219, 113, 221, 0.4095763305322129) 100%
+);
+
 html {
   height: 100%;
 }
@@ -9,11 +15,7 @@ html {
 body {
   height: 100%;
   background: rgb(144, 199, 200);
-  background: linear-gradient(
-    0deg,
-    rgba(144, 199, 200, 0.6560749299719888) 0%,
-    rgba(219, 113, 221, 0.4095763305322129) 100%
-  );
+  background: $base-color;
   backdrop-filter: blur(50px);
 }
 

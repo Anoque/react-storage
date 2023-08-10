@@ -7,10 +7,7 @@ interface IError {
   reset: () => void
 }
 
-export default function Error({
-                                error,
-                                reset,
-                              }: IError) {
+export default function Error({ error, reset }: IError) {
   useEffect(() => {
     console.error(error)
   }, [error])
@@ -19,9 +16,7 @@ export default function Error({
     <div>
       <h2>Something went wrong!</h2>
 
-      <button onClick={reset}>
-        Try again
-      </button>
+      <button onClick={reset}>Try again</button>
     </div>
   )
 }
