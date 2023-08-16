@@ -8,6 +8,10 @@ $base-color: linear-gradient(
   rgba(219, 113, 221, 0.4095763305322129) 100%
 );
 
+.bg-main {
+  background: $base-color;
+}
+
 html {
   height: 100%;
 }

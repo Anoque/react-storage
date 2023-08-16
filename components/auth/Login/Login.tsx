@@ -34,7 +34,7 @@ function Login() {
       !authLoginState.error &&
       token
     ) {
-      redirect(`/${user}`)
+      redirect('/storage/dashboard')
     }
   }, [authLoginState])
 
